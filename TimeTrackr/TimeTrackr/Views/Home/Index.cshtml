@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h3>Welcome to TimeTrackr, would you like to...</h3>
+<ol class="round">
+    <li class="one">
+        @Html.ActionLink("View your tracked time?", "Index", "TimeInterval")
+    </li>
+    <li class="two">
+        @Html.ActionLink("Create a new task to track?", "Create", "TimeInterval")
+    </li>
+     <li class="three">
+        @Html.ActionLink("Display tasks by their category?", "TasksByCategory", "TimeInterval")
+    </li>
+</ol>

@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <p>
+        TimeTrackr is a simple application for tracking various tasks. 
+        I have been studying ASP.NET MVC 4 for some time now, and felt I needed to challenge myself.
+        I have created a lot of MVC applications following Microsoft tutorials and the book Pro ASP.NET MVC 4
+        from Appress. I wanted to show off my new skills by making a website without following a tutorial.
+    </p>
+</article>
+
+<aside>
+    <h3>Aside Title</h3>
+    <p>
+        Use this area to provide additional information.
+    </p>
+    <ul>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    </ul>
+</aside>

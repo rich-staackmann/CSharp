@@ -1,0 +1,23 @@
+﻿@model String
+
+@{
+    ViewBag.Title = "TasksByCategory";
+}
+
+<h2>Find Tasks By Category</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        <label>Category</label>
+    </div>
+    <div class="editor-field">
+       <input type="text" name="category" />
+    </div>
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+}
