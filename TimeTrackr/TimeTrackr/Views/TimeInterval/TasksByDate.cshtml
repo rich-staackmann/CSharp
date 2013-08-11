@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "TasksByDate";
+}
+
+<h2>Tasks By Date</h2>
+
+<p>Please enter a date in the MM/DD/YYYY format.</p>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        <label>Starting Date</label>
+    </div>
+    <div class="editor-field">
+        @Html.TextBox("StartDate")
+    </div>
+    <div class="editor-label">
+        <label>Ending Date, leave empty for current day</label>
+    </div>
+    <div class="editor-field">
+        @Html.TextBox("EndDate")
+    </div>
+    <p>
+        <input type="submit" value="Search" />
+    </p>
+}

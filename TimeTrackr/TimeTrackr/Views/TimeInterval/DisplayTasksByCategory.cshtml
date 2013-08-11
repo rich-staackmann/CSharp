@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TimeTrackr.Models.TimeInterval>
-
+@using TimeTrackr.Helpers
 @{
     ViewBag.Title = "DisplayTasksByCategory";
 }
@@ -45,4 +45,6 @@
     </tr>
 }
 
+    <tr><td>Total tracked time: @HtmlHelpers.GetElapsedTimeForCollection(Model.AsEnumerable())</td></tr>
 </table>
+

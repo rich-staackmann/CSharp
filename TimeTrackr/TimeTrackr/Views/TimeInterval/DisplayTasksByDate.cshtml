@@ -1,16 +1,11 @@
 ﻿@model IEnumerable<TimeTrackr.Models.TimeInterval>
 
 @{
-    ViewBag.Title = "Tracked Time";
+    ViewBag.Title = "TasksByDate";
 }
 
-<h2>Tracked Time</h2>
+<h2>Tasks By Date</h2>
 
-<p>
-    @{
-        Html.RenderPartial("NavigationPartial");
-    }
-</p>
 <table>
     <tr>
         <th>
@@ -49,5 +44,5 @@
         </td>
     </tr>
 }
-
+    <tr><td>Total tracked time: @HtmlHelpers.GetElapsedTimeForCollection(Model.AsEnumerable())</td></tr>
 </table>

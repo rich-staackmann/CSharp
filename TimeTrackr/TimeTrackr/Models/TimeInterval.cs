@@ -7,6 +7,8 @@ using System.Web;
 
 namespace TimeTrackr.Models
 {
+    //this class represents a basic interval of time that a user would want to track
+    //this model has a many to one relationship with our UserProfile model
     [Table("TimeInterval")]
     public class TimeInterval
     {

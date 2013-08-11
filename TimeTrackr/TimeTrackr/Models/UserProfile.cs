@@ -7,6 +7,9 @@ using System.Web;
 
 namespace TimeTrackr.Models
 {
+    //this is the user profile model provided with the default MVC application
+    //I moved it from its original model file and deleted the context it was declared in
+    //I needed control over this model so that Users will have the time they track linked to their account only
     [Table("UserProfile")]
     public class UserProfile
     {

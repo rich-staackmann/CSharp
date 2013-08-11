@@ -1,4 +1,4 @@
-﻿@model String
+﻿
 
 @{
     ViewBag.Title = "TasksByCategory";
@@ -15,9 +15,9 @@
         <label>Category</label>
     </div>
     <div class="editor-field">
-       <input type="text" name="category" />
+        @Html.DropDownList("Category", (SelectList)ViewBag.SelectList)
     </div>
     <p>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
     </p>
 }

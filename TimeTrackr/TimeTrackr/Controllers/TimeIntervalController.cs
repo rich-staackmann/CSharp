@@ -12,7 +12,9 @@ namespace TimeTrackr.Controllers
     [Authorize]
     public class TimeIntervalController : Controller
     {
+        //this is our EF context
         private EFDbContext db = new EFDbContext();
+
         //
         // GET: /TimeInterval/
 
@@ -119,11 +121,31 @@ namespace TimeTrackr.Controllers
             return RedirectToAction("Index");
         }
 
+        //
+        //GET: /TimeInterval/TasksByCategory
+        //this is the function for inputting a category to search for tracked tasks
+
         [HttpGet, ActionName("TasksByCategory")]
         public ActionResult GetTasksByCategory()
         {
+            List<TimeInterval> intervals = new List<TimeInterval>(db.TimeIntervals.Where(p => p.IntervalOwner.UserName == User.Identity.Name).ToList());
+            List<string> categories = new List<string>();
+
+            foreach (TimeInterval m in intervals)
+            {
+                if (m.Category != null)
+                {
+                    categories.Add(m.Category);
+                }
+            }
+            categories = categories.Distinct().ToList();
+            ViewBag.SelectList = new SelectList(categories);
             return View();
         }
+
+        //
+        //POST: /TimeInterval/TasksByCategory
+        //this return list of all the tracked tasks that match the posted category type
 
         [HttpPost, ActionName("TasksByCategory")]
         [ValidateAntiForgeryToken]
@@ -137,6 +159,40 @@ namespace TimeTrackr.Controllers
             return View("DisplayTasksByCategory", intervals);
         }
 
+        //
+        //GET: /Timeinterval/TasksByDate
+        //this will find all task the were created in a specific time frame (ie two weeks)
+
+        [HttpGet, ActionName("TasksByDate")]
+        public ActionResult GetTasksByDate()
+        {
+            return View();
+        }
+
+        //
+        //POST: /timeitnerval/tasksbydate
+        //this wil display all the tasks that happen in a certain time frame
+
+        [HttpPost, ActionName("TasksByDate")]
+        public ActionResult GetTasksByDate(DateTime StartDate, DateTime? EndDate = null)
+        {
+            if (!EndDate.HasValue)
+            {
+                EndDate = DateTime.Today;
+            }
+
+            IEnumerable<TimeInterval> intervals = db.TimeIntervals.Where(p => p.StartTime.CompareTo(StartDate) >= 0 && p.IntervalOwner.UserName == User.Identity.Name);
+
+            if (intervals == null)
+            {
+                return View();
+            }
+
+            return View("DisplayTasksByDate", intervals);
+        }
+
+
+        //our method to free up resources and release db connections
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
