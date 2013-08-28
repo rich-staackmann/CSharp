@@ -1,0 +1,33 @@
+﻿@model IQueryable<TotalWarUnits.Models.UnitModel>
+
+@{
+    ViewBag.Title = "UnitIndex";
+}
+
+<h2>Unit List</h2>
+
+<table>
+    <tr>
+        <th>
+            Availability
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Weapon
+        </th>
+        <th>
+            Soldiers
+        </th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Availability)</td>
+        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+        <td>@Html.DisplayFor(modelItem => item.Weapon)</td>
+        <td>@Html.DisplayFor(modelItem => item.Soldiers)</td>
+    </tr>
+}
+</table>

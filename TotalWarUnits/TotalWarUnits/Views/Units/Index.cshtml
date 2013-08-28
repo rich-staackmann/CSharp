@@ -1,0 +1,55 @@
+﻿@model IQueryable<TotalWarUnits.Models.UnitModel>
+
+@{
+    ViewBag.Title = "Unit List";
+}
+
+<h2>Unit List</h2>
+
+<table style="overflow: scroll">
+    <tr>
+        <th>
+            Availability
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Weapon
+        </th>
+        <th>
+            Soldiers
+        </th>
+        <th>
+            Cost
+        </th>
+        <th>
+            Upkeep
+        </th>
+        <th>
+            Attack
+        </th>
+        <th>
+            Charge
+        </th>
+        <th>
+            Anti-Cav
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Availability)</td>
+        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+        <td>@Html.DisplayFor(modelItem => item.Weapon)</td>
+        <td>@Html.DisplayFor(modelItem => item.Soldiers)</td>
+        <td>@Html.DisplayFor(modelItem => item.Cost)</td>
+        <td>@Html.DisplayFor(modelItem => item.Upkeep)</td>
+        <td>@Html.DisplayFor(modelItem => item.Attack)</td>
+        <td>@Html.DisplayFor(modelItem => item.Charge)</td>
+        <td>@Html.DisplayFor(modelItem => item.Anti_Cav)</td>
+        <td>@Html.ActionLink("Compare Unit", "Compare", new { item.Order})</td>
+    </tr>
+}
+</table>
