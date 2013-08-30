@@ -1,0 +1,23 @@
+﻿
+
+@{
+    ViewBag.Title = "TasksByCategory";
+}
+
+<h2>Find Tasks By Category</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        <label>Category</label>
+    </div>
+    <div class="editor-field">
+        @Html.DropDownList("Category", (SelectList)ViewBag.SelectList)
+    </div>
+    <p>
+        <input type="submit" value="Search" />
+    </p>
+}

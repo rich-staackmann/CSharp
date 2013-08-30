@@ -21,6 +21,10 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("View Tasks", "Index", "Task")</li>
+                            <li>@Html.ActionLink("Create Task", "Create", "Task")</li>
+                            <li>@Html.ActionLink("Find Tasks by Category", "TasksByCategory","Task")</li>
+                            <li>@Html.ActionLink("Display Tasks by Date", "TasksByDate", "Task")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>

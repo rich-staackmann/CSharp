@@ -20,6 +20,6 @@ namespace TimeTrackr.Models
         public string UserName { get; set; }
 
         //our custom model, declared virtual for lazy loading
-        public virtual ICollection<TimeInterval> TimeIntervals { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

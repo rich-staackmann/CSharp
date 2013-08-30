@@ -43,6 +43,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -186,11 +189,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TimeIntervalController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="DAL\ITaskRepository.cs" />
+    <Compile Include="DAL\NinjectDependencyResolver.cs" />
+    <Compile Include="DAL\TaskRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Helpers\ModelHelpers.cs" />
     <Compile Include="Migrations\201308070014399_Initial.cs" />
     <Compile Include="Migrations\201308070014399_Initial.Designer.cs">
       <DependentUpon>201308070014399_Initial.cs</DependentUpon>
@@ -199,10 +206,18 @@
     <Compile Include="Migrations\201308070550025_Categories.Designer.cs">
       <DependentUpon>201308070550025_Categories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201308140000299_renametotask.cs" />
+    <Compile Include="Migrations\201308140000299_renametotask.Designer.cs">
+      <DependentUpon>201308140000299_renametotask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201308160142298_fixedkeys.cs" />
+    <Compile Include="Migrations\201308160142298_fixedkeys.Designer.cs">
+      <DependentUpon>201308160142298_fixedkeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EFDbContext.cs" />
-    <Compile Include="Models\TimeInterval.cs" />
+    <Compile Include="Models\Task.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -317,16 +332,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\TimeInterval\Index.cshtml" />
-    <Content Include="Views\TimeInterval\Details.cshtml" />
-    <Content Include="Views\TimeInterval\Create.cshtml" />
-    <Content Include="Views\TimeInterval\Edit.cshtml" />
-    <Content Include="Views\TimeInterval\Delete.cshtml" />
-    <Content Include="Views\TimeInterval\TasksByCategory.cshtml" />
-    <Content Include="Views\TimeInterval\DisplayTasksByCategory.cshtml" />
-    <Content Include="Views\TimeInterval\NavigationPartial.cshtml" />
-    <Content Include="Views\TimeInterval\TasksByDate.cshtml" />
-    <Content Include="Views\TimeInterval\DisplayTasksByDate.cshtml" />
+    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Task\Details.cshtml" />
+    <Content Include="Views\Task\Create.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Task\Delete.cshtml" />
+    <Content Include="Views\Task\TasksByCategory.cshtml" />
+    <Content Include="Views\Task\DisplayTasksByCategory.cshtml" />
+    <Content Include="Views\Task\NavigationPartial.cshtml" />
+    <Content Include="Views\Task\TasksByDate.cshtml" />
+    <Content Include="Views\Task\DisplayTasksByDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +355,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308070550025_Categories.resx">
       <DependentUpon>201308070550025_Categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308140000299_renametotask.resx">
+      <DependentUpon>201308140000299_renametotask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201308160142298_fixedkeys.resx">
+      <DependentUpon>201308160142298_fixedkeys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -358,7 +379,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>61650</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:58349/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -17,7 +17,7 @@ namespace TimeTrackr.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<TimeInterval> TimeIntervals { get; set; }
+        public DbSet<Task> TimeIntervals { get; set; }
     } */
 
     public class RegisterExternalLoginModel

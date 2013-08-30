@@ -17,10 +17,10 @@ namespace TimeTrackr.Helpers
         }
 
         //this helper will find the total elaspsed time for a collection of tasks
-        public static TimeSpan GetElapsedTimeForCollection(IEnumerable<TimeInterval> tasks)
+        public static TimeSpan GetElapsedTimeForCollection(IEnumerable<Task> tasks)
         {
             TimeSpan sum = new TimeSpan(0,0,0);
-            foreach (TimeInterval task in tasks)
+            foreach (Task task in tasks)
             {
                 //System.Diagnostics.Debug.WriteLine(task.ID);
                 sum = sum.Add(task.EndTime.Subtract(task.StartTime)); //timespan is a value type, so you must assign the return value of the ADD function to a variable
